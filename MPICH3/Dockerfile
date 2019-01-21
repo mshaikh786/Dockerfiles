@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM debian:9.6
 RUN apt-get update
 
 # Building GCC
