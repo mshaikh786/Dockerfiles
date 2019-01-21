@@ -33,4 +33,4 @@ RUN env MPICC=/usr/local/bin/mpicc pip install mpi4py
 # Install newer version of matplotlib in Anaconda as the default verison fails to import matplotlib.pyplot
 RUN conda install -c conda-forge -y matplotlib=3.0.2
 RUN conda install -c conda-forge  rebound
-
+RUN pip install reboundx
