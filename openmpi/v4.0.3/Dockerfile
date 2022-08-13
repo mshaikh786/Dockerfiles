@@ -1,7 +1,10 @@
 FROM ubuntu:18.04
 RUN apt-get update && apt-get install -y \
     build-essential \
-    gcc-4.8 curl make libnuma-dev libnl-3-200
+    gcc-8 g++-8 gfortran-8 curl make libnuma-dev libnl-3-200 autoconf
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 7 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 7 && \
+    update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-8 7
 WORKDIR /opt/drivers
 COPY MLNX_OFED_LINUX-5.0-2.1.8.0-ubuntu18.04-x86_64.tgz /opt/drivers
 RUN tar xvf MLNX_OFED_LINUX-5.0-2.1.8.0-ubuntu18.04-x86_64.tgz

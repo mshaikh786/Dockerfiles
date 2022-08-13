@@ -1,0 +1,52 @@
+FROM krccl/openmpi_base:403
+RUN apt-get update && apt-get install -y git autoconf libaec0 libjpeg8-dev
+ENV PATH /software/bin:$PATH
+ENV LD_LIBRARY_PATH /software/lib:$LD_LIBRARY_PATH
+ENV PKG_CONFIG_PATH /software/lib/pkgconfig:$PKG_CONFIG_PATH
+WORKDIR /software
+RUN git clone -b v1.2.11 https://github.com/zlib-ng/zlib-ng.git && \
+    cd zlib-ng && \
+    ./configure --prefix=/software --sharedlibdir=/software/lib && \
+    make && make install
+WORKDIR /software 
+RUN git clone -b hdf5-1_12_2 https://github.com/HDFGroup/hdf5.git && \
+	cd hdf5 && \
+    ./configure --prefix=/software --enable-parallel --with-zlib=/software && \
+    make VERBOSE=1 && make install
+WORKDIR /software
+RUN curl https://parallel-netcdf.github.io/Release/pnetcdf-1.12.3.tar.gz -o /tmp/pnetcdf-1.12.3.tar.gz && \
+    tar xvf /tmp/pnetcdf-1.12.3.tar.gz && \
+    cd pnetcdf-1.12.3 && \
+    ./configure --prefix=/software --enable-shared  && \
+    make VERBOSE=1 && make install 
+WORKDIR /software
+RUN git clone -b v4.9.0 https://github.com/Unidata/netcdf-c.git && \
+    cd /software/netcdf-c && \
+    autoconf && \
+    ./configure --enable-pnetcdf --with-pic --enable-shared --prefix=/software CPPFLAGS=-I/software/include LDFLAGS=-L/software/lib LIBS=-lz && \
+    make && make install
+WORKDIR /software
+RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.sh -o /tmp/cmake-3.24.0-linux-x86_64.sh && \
+    sh /tmp/cmake-3.24.0-linux-x86_64.sh --prefix=/software --skip-license 
+RUN rm -rf zlib-ng hdf5 pnetcdf-1.12.3 netcdf-c /tmp/*
+
+# Installing CDO dependencies
+WORKDIR /software
+RUN apt-get install -y unzip && \
+    curl -L http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-1.900.1.zip -o /tmp/jasper-1.900.1.zip && \
+    unzip /tmp/jasper-1.900.1.zip && \
+    cd jasper-1.900.1 && \
+    ./configure --prefix=/software --enable-shared && \
+    make VERBOSE=1 && make install
+WORKDIR /software
+RUN curl -L https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.26.0-Source.tar.gz -o /tmp/eccodes-2.26.0-Source.tar.gz && \
+    tar xvf /tmp/eccodes-2.26.0-Source.tar.gz 
+WORKDIR /software/build-eccodes 
+RUN apt-get install -y libaec0
+RUN cmake -DCMAKE_INSTALL_PREFIX=/software \
+          -DENABLE_ECCODES_THREADS=OFF -DENABLE_ECCODES_OMP_THREADS=ON \
+          ../eccodes-2.26.0-Source  && \
+    make VERBOSE=1 && make install
+WORKDIR /software
+RUN rm -rf /tmp/*
+    
