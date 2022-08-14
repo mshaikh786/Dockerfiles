@@ -1,5 +1,5 @@
 FROM krccl/openmpi_base:403
-RUN apt-get update && apt-get install -y git autoconf libaec0 libjpeg8-dev
+RUN apt-get update && apt-get install -y git autoconf libaec-dev libjpeg8-dev
 ENV PATH /software/bin:$PATH
 ENV LD_LIBRARY_PATH /software/lib:$LD_LIBRARY_PATH
 ENV PKG_CONFIG_PATH /software/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -42,11 +42,41 @@ WORKDIR /software
 RUN curl -L https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.26.0-Source.tar.gz -o /tmp/eccodes-2.26.0-Source.tar.gz && \
     tar xvf /tmp/eccodes-2.26.0-Source.tar.gz 
 WORKDIR /software/build-eccodes 
-RUN apt-get install -y libaec0
 RUN cmake -DCMAKE_INSTALL_PREFIX=/software \
           -DENABLE_ECCODES_THREADS=OFF -DENABLE_ECCODES_OMP_THREADS=ON \
           ../eccodes-2.26.0-Source  && \
     make VERBOSE=1 && make install
+
 WORKDIR /software
-RUN rm -rf /tmp/*
-    
+RUN apt-get install -y libfftw3-dev libgrib-api-dev libcurl4-gnutls-dev libxml2-dev
+
+#Install proj and Magics
+WORKDIR /software
+RUN curl -L https://download.osgeo.org/proj/proj-5.0.1.tar.gz -o /tmp/proj-5.0.1.tar.gz && \
+    tar xvf /tmp/proj-5.0.1.tar.gz && \
+    cd proj-5.0.1 && ./configure --prefix=/software && make && make install
+WORKDIR /software
+RUN curl -L https://confluence.ecmwf.int/download/attachments/3473464/Magics-4.0.3-Source.tar.gz -o /tmp/Magics-4.0.3-Source.tar.gz && \
+    tar xvf /tmp/Magics-4.0.3-Source.tar.gz 
+RUN apt-get install -y libcairo2-dev libpango1.0-dev python3-jinja2 libboost-dev
+RUN cd Magics-4.0.3-Source && mkdir build && cd build && \
+    cmake -DECCODES_PATH=/software -DPROJ4_PATH=/software -DCMAKE_INSTALL_PREFIX=/software \
+    -DCMAKE_CXX_FLAGS='-fPIC -include limits' -DCMAKE_EXE_LINKER_FLAGS='-L/software/lib -leccodes -leccodes_f90' .. && \
+    make VERBOSE=1 && make install
+
+#Install CDO
+WORKDIR /software
+ENV NETCDF_DIR /software
+ENV NC_CONFIG /software/bin/nc-config
+ENV HDF5_DIR /software
+
+RUN curl -L https://code.mpimet.mpg.de/attachments/download/24638/cdo-1.9.10.tar.gz -o /tmp/cdo-1.9.10.tar.gz && \
+    tar xvf cdo-1.9.10.tar.gz && \
+    cd cdo-1.9.10 && \
+    ./configure --prefix=/software  --with-netcdf=$NETCDF_DIR --with-magics --with-eccodes=/software --with-hdf5 \
+       --with-fftw3 --with-proj --with-curl --with-libxml2 --with-grib_api --enable-netcdf4 && \
+    make VERBOSE=1 && make
+WORKDIR /software    
+RUN rm -rf jasper-1.900.1 build-eccodes \
+           eccodes-2.26.0-Source proj-5.0.1 \
+           Magics-4.0.3-Source /tmp/*
