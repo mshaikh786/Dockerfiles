@@ -1,0 +1,145 @@
+#1 [internal] load build definition from tmp.dockerfile
+#1 sha256:aba5af9e3e94b90523a53b8005f834dca816d8b5946b848d2d7ced6cacd04865
+#1 transferring dockerfile: 429B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:369aab31a4696bb7cec30dff8f16ee0537b261818e5a786fee50960d43aae6e4
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/spack/centos7:0.15.4
+#3 sha256:398b6390729e06c5a532e98971d94cf9753917769fb20f86c91966db471f3b6e
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/spack/centos7:0.15.4
+#4 sha256:4dc9926dc0a8bd5b3e0d6c5ff1b6753e961bdd765ca8eea0180464952d6df1bd
+#4 DONE 0.0s
+
+#5 [2/3] WORKDIR /opt/spack-environment
+#5 sha256:10442bea985d918abc9c5ec37c4ed65602330b0a345e0de8bbbf27ff9e32d007
+#5 CACHED
+
+#6 [3/3] RUN spack install --no-checksum gcc@9.4.0
+#6 sha256:a18983ff3b29b86038411e15e7519f05e5f162685b82b64f9df02288d5a2c55c
+#6 2.774 ==> Warning: Missing a source id for gcc@9.4.0
+#6 4.366 ==> Installing libsigsegv
+#6 4.366 ==> No binary for libsigsegv found: installing from source
+#6 7.023 ==> libsigsegv: Executing phase: 'autoreconf'
+#6 7.024 ==> libsigsegv: Executing phase: 'configure'
+#6 13.62 ==> libsigsegv: Executing phase: 'build'
+#6 14.55 ==> libsigsegv: Executing phase: 'install'
+#6 15.10 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/libsigsegv-2.12-v2obmoglrgu6k2rz77fdf2czglzjmk3u
+#6 16.36 ==> Installing pkgconf
+#6 16.36 ==> No binary for pkgconf found: installing from source
+#6 19.32 ==> pkgconf: Executing phase: 'autoreconf'
+#6 19.32 ==> pkgconf: Executing phase: 'configure'
+#6 23.97 ==> pkgconf: Executing phase: 'build'
+#6 26.18 ==> pkgconf: Executing phase: 'install'
+#6 26.80 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/pkgconf-1.7.3-lvtsgdk5qovw444eghqgyc4cr5ajdcxl
+#6 28.23 ==> Installing zlib
+#6 28.23 ==> No binary for zlib found: installing from source
+#6 31.61 ==> zlib: Executing phase: 'install'
+#6 33.62 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/zlib-1.2.11-e72utzaadzx4dxew2tvh5lfgnuo5pwig
+#6 35.02 ==> Installing m4
+#6 35.02 ==> No binary for m4 found: installing from source
+#6 39.59 ==> m4: Executing phase: 'autoreconf'
+#6 39.60 ==> m4: Executing phase: 'configure'
+#6 75.88 ==> m4: Executing phase: 'build'
+#6 78.44 ==> m4: Executing phase: 'install'
+#6 79.71 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/m4-1.4.18-jxhdetfo447vaoswwig6xbwmntmudhhp
+#6 81.14 ==> Installing ncurses
+#6 81.14 ==> No binary for ncurses found: installing from source
+#6 84.78 ==> ncurses: Executing phase: 'autoreconf'
+#6 84.78 ==> ncurses: Executing phase: 'configure'
+#6 122.8 ==> ncurses: Executing phase: 'build'
+#6 150.8 ==> ncurses: Executing phase: 'install'
+#6 160.2 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/ncurses-6.2-rrdo63czgybdxxfgnuknr654ss7rufzj
+#6 161.5 ==> Installing libtool
+#6 161.5 ==> No binary for libtool found: installing from source
+#6 164.7 ==> libtool: Executing phase: 'autoreconf'
+#6 164.7 ==> libtool: Executing phase: 'configure'
+#6 174.4 ==> libtool: Executing phase: 'build'
+#6 176.3 ==> libtool: Executing phase: 'install'
+#6 177.5 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/libtool-2.4.6-qycgulia4oiwj4sdtchd3h4o73v7s2da
+#6 178.9 ==> Installing readline
+#6 178.9 ==> No binary for readline found: installing from source
+#6 182.5 ==> readline: Executing phase: 'autoreconf'
+#6 182.5 ==> readline: Executing phase: 'configure'
+#6 192.1 ==> readline: Executing phase: 'build'
+#6 193.5 ==> readline: Executing phase: 'install'
+#6 194.1 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/readline-8.0-f37kn3mt4o6gqnlg7ycpoxr2462vzwaj
+#6 195.5 ==> Installing gdbm
+#6 195.5 ==> No binary for gdbm found: installing from source
+#6 198.5 ==> gdbm: Executing phase: 'autoreconf'
+#6 198.5 ==> gdbm: Executing phase: 'configure'
+#6 206.9 ==> gdbm: Executing phase: 'build'
+#6 209.1 ==> gdbm: Executing phase: 'install'
+#6 210.4 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/gdbm-1.18.1-rflrc3oi4f34cdyipy2bwxjvvcjissyh
+#6 211.8 ==> Installing perl
+#6 211.8 ==> No binary for perl found: installing from source
+#6 221.1 ==> Moving resource stage
+#6 221.1 	source : /tmp/root/spack-stage/resource-cpanm-blsupjzvu3bg4qoszso4imldlqsmkdke/spack-src/
+#6 221.1 	destination : /tmp/root/spack-stage/spack-stage-perl-5.30.3-blsupjzvu3bg4qoszso4imldlqsmkdke/spack-src/cpanm/cpanm
+#6 221.1 ==> perl: Executing phase: 'configure'
+#6 286.3 ==> perl: Executing phase: 'build'
+#6 347.8 ==> perl: Executing phase: 'install'
+#6 390.5 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/perl-5.30.3-blsupjzvu3bg4qoszso4imldlqsmkdke
+#6 392.2 ==> Installing autoconf
+#6 392.2 ==> No binary for autoconf found: installing from source
+#6 395.7 ==> autoconf: Executing phase: 'autoreconf'
+#6 395.7 ==> autoconf: Executing phase: 'configure'
+#6 397.5 ==> autoconf: Executing phase: 'build'
+#6 399.0 ==> autoconf: Executing phase: 'install'
+#6 399.9 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/autoconf-2.69-vxx5xzli43tumcpb3vkf42z5llv42ije
+#6 401.3 ==> Installing automake
+#6 401.3 ==> No binary for automake found: installing from source
+#6 405.1 ==> automake: Executing phase: 'autoreconf'
+#6 405.1 ==> automake: Executing phase: 'configure'
+#6 411.4 ==> automake: Executing phase: 'build'
+#6 412.1 ==> automake: Executing phase: 'install'
+#6 413.1 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/automake-1.16.2-vwmnmkctqtvvvn4la657z2ag4qfajarq
+#6 414.6 ==> Installing gmp
+#6 414.6 ==> No binary for gmp found: installing from source
+#6 418.4 ==> gmp: Executing phase: 'autoreconf'
+#6 431.0 ==> gmp: Executing phase: 'configure'
+#6 456.9 ==> gmp: Executing phase: 'build'
+#6 483.6 ==> gmp: Executing phase: 'install'
+#6 485.2 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/gmp-6.1.2-qey54wlpsjrb5zdgjqi2vkz4ebgvpqr6
+#6 486.6 ==> Installing mpfr
+#6 486.6 ==> No binary for mpfr found: installing from source
+#6 491.5 ==> mpfr: Executing phase: 'autoreconf'
+#6 501.5 ==> mpfr: Executing phase: 'configure'
+#6 512.8 ==> mpfr: Executing phase: 'build'
+#6 526.4 ==> mpfr: Executing phase: 'install'
+#6 527.5 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/mpfr-3.1.6-eh5hb5x7vn7dt3svv47rbpo7ncgliipe
+#6 528.9 ==> Installing isl
+#6 528.9 ==> No binary for isl found: installing from source
+#6 532.6 ==> isl: Executing phase: 'autoreconf'
+#6 532.6 ==> isl: Executing phase: 'configure'
+#6 539.6 ==> isl: Executing phase: 'build'
+#6 556.5 ==> isl: Executing phase: 'install'
+#6 557.5 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/isl-0.20-t7tswe6yfrka4y5wae4a6twhskctc2o6
+#6 559.0 ==> Installing mpc
+#6 559.0 ==> No binary for mpc found: installing from source
+#6 562.0 ==> mpc: Executing phase: 'autoreconf'
+#6 562.0 ==> mpc: Executing phase: 'configure'
+#6 568.5 ==> mpc: Executing phase: 'build'
+#6 571.6 ==> mpc: Executing phase: 'install'
+#6 572.5 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/mpc-1.1.0-7gwvr2v2xwowzgdhttxdwmx4kam25ypm
+#6 573.9 ==> Installing gcc
+#6 573.9 ==> No binary for gcc found: installing from source
+#6 603.7 ==> gcc: Executing phase: 'autoreconf'
+#6 603.7 ==> gcc: Executing phase: 'configure'
+#6 607.5 ==> gcc: Executing phase: 'build'
+#6 2831.1 ==> gcc: Executing phase: 'install'
+#6 2870.2 [+] /opt/spack/opt/spack/linux-centos7-ivybridge/gcc-4.8.5/gcc-9.4.0-4ephn4wil6hvjb34qhmw5h4jkupsr5ip
+#6 DONE 2871.1s
+
+#7 exporting to image
+#7 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#7 exporting layers
+#7 exporting layers 17.5s done
+#7 writing image sha256:11183c50d49468f562b29f013e81a193901827678f56b4e65597b7ae6a0c7e19 done
+#7 naming to docker.io/library/test done
+#7 DONE 17.6s

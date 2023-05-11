@@ -1,0 +1,10 @@
+# Build stage with Spack pre-installed and ready to be used
+FROM spack/centos7:0.15.4 as builder
+
+# What we want to install and how we want to install it
+# is specified in a manifest file (spack.yaml)
+WORKDIR /opt/spack-environment
+COPY spack.yaml /opt/spack-environment/spack.yaml
+# Install the software, remove unnecessary deps
+
+RUN ls -ltrah && spack install -f spack.yaml

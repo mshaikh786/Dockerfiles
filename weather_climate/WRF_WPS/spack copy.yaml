@@ -1,0 +1,16 @@
+spack:
+  specs:
+    - gcc@9.4.0
+    - zlib@1.2.8%gcc@9.4.0
+    - bison@3.4.2%gcc@9.4.0
+    - flex@2.7%gcc@9.4.0
+    - mpich@3.4.3%gcc@9.4.0
+    - python@3.8.0%gcc@9.4.0
+    - py-pip@2.22.2 
+    - jasper@1.900.1%gcc@9.4.0
+    - libpng@1.2.57%gcc@9.4.0
+    - wgrib2@3.1.1%gcc@9.4.0
+    - netcdf-c@4.3.3%gcc@9.4.0
+    - netcdf-cxx@4.3.3%gcc@9.4.0
+    - ncl@6.5.0%gcc@9.4.0
+    - parallel-netcdf@1.12.2%gcc@9.4.0
